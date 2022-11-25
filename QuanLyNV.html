@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage Manage</title>
+    <link rel="stylesheet" href="QuanLyNV.css"> 
+</head>
+<body>
+    <!-- html cho phần menu -->
+    <div class="navigation">
+        <div class="menuToggle"></div>
+        <ul> 
+            <li class="list" style="--clr:#f44336;">
+                <a href="home.html">
+                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                    <span class="text">Home</span>
+                </a>
+            </li>
+
+            <li class="list " style="--clr:#0fc70f;">
+                <a href="ChamCong.html">
+                    <span class="icon"><ion-icon name="time-outline"></ion-icon></span>
+                    <span class="text">Timekeeping</span>
+                </a>
+            </li>
+
+            <li class="list" style="--clr:#a8c70f;">
+                <a href="BaoCaoTK.html">
+                    <span class="icon"><ion-icon name="clipboard-outline"></ion-icon></span>
+                    <span class="text">Report</span>
+                </a>
+            </li>
+
+            <li class="list active" style="--clr:#4e1ce2;">
+                <a href="QuanLyNV.html">
+                    <span class="icon"><ion-icon name="clipboard-outline"></ion-icon></span>
+                    <span class="text">Staff Management</span>
+                </a>
+            </li>
+            
+
+        </ul>
+    </div>
+    <!-- end menu -->
+
+    <!-- html cho phần overview -->
+    <div class="header">       
+        <div class="header-overview">
+            <div class="navigation-profile">
+                <div class="userBx">
+                    <div class="imgBx">
+                        <img src="images/hướng dương.jpg" alt="ảnh đại diện">
+                    </div>
+                    <p class="username">Alina Smith</p>
+                </div>
+                <div class="menuToggle-profile"></div>
+                <ul class="menu">
+                    <li>
+                        <a href="#"><ion-icon name="person-outline"></ion-icon> My Profile</a>
+                    </li>
+                    <li>
+                        <a href="#"><ion-icon name="notifications-outline"></ion-icon> Notifications</a>
+                    </li>
+                    <li>
+                        <a href="#"><ion-icon name="log-out-outline"></ion-icon>  Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- end phần overview -->
+
+    <!-- html cho phần nội dung -->
+    <div class="home-main">
+        <div class="header-content-tiltle">
+            <p>Staff Management</p>
+        </div>
+        <div class="header-content">
+            <label>
+                Search:
+                <input id="tb-search">
+                <button class="search" type="button" id="btn-search" onclick="">Search</button>
+                <button class="export-rp" type="button" id="btn-export" onclick="">Export List</button>
+            </label>
+
+        </div>
+        <div class="table-overview">
+            <table class="table">
+                <thead>
+                    <tr>
+                     <th>ID Staff</th>
+                     <th>Full Name</th>
+                     <th>Phone Number</th>
+                     <th>Position</th>
+                     <th>Department</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="ID">NV01</td>
+                        <td data-label="FN">Nguyễn Văn A</td>
+                        <td data-label="PN">0905897321</td>
+                        <td data-label="PS">Nhân Viên</td>
+                        <td data-label="DM">Kế Toán</td>
+                    </tr>
+           
+                    <tr>
+                        <td data-label="ID">NV01</td>
+                        <td data-label="FN">Nguyễn Văn A</td>
+                        <td data-label="PN">0905897321</td>
+                        <td data-label="PS">Nhân Viên</td>
+                        <td data-label="DM">Kế Toán</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr>
+            <footer>
+                <p>MMS</p>
+            </footer>
+    </div>
+    <!-- <footer>
+        <div class="footer-content">
+            <button class="export" type="button" id="btn-expotrp" onclick="">Xuất Báo Cáo</button>
+            <a href="#" style="text-decoration: none;"></a>
+        </div>
+    </footer> -->
+
+    
+    <!-- end nội dung -->
+
+    <script>
+        const menuToggle = document.querySelector('.menuToggle');
+        const navigation = document.querySelector('.navigation');
+        const header= document.querySelector('.header');
+        const content = document.querySelector('.home-main');
+        menuToggle.onclick = function(){
+            navigation.classList.toggle('open');
+            header.classList.toggle('open2');
+            content.classList.toggle('open3');
+        }
+
+        const list = document.querySelectorAll('.list');
+        function activeLink(){
+            list.forEach((item) => item.classList.remove('active'));
+            this.classList.add('active');
+        }
+        list.forEach((item) => item.addEventListener('click',activeLink))
+
+        let menuToggleprofile = document.querySelector('.menuToggle-profile');
+        let navigationprofile = document.querySelector('.navigation-profile')
+        menuToggleprofile.onclick = function(){
+            navigationprofile.classList.toggle('active')
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>
