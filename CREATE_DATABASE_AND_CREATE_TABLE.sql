@@ -65,12 +65,10 @@ GO
 CREATE TABLE MENU(
     _Food_id VARCHAR(10) NOT NULL,
     _Food_name NVARCHAR(20) NOT NULL,
-    _Description INT,
+    _Description NVARCHAR(max),
 	_Imagefood varchar(100)
     CONSTRAINT PK_Food_id PRIMARY KEY(_Food_id)
 )
-alter table MENU
-alter column _Description int
 
 GO
 
