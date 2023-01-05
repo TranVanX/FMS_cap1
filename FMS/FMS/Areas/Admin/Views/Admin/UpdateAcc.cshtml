@@ -151,35 +151,53 @@
                             @*<input type="text">*@
                         </div>
                         <div class="rowtext">
-                            <p>Password: </p>
-                            @Html.TextBoxFor(m => m.Password, "", new { @class = " ", placeholder = "PassWord",Type="password"})
+                            <p style="margin-right:35px">Password: </p>
+                            <input type="text" name="Password" placeholder="Password" required id="" class="form-control col-half width-50" value="@Model.Password">
+                            @Html.ValidationMessageFor(model => model.Password)
                             @*<input type="text">*@
                         </div>
                         <div class="rowtext">
                             <p>Re-Password: </p>
-                            @Html.TextBoxFor(m => m.RePassword, "", new { @class = " ", placeholder = "RePassWord", Type = "password" })
-                            @*<input type="password">*@
+                            <input type="text" name="RePassword" placeholder="RePassword" required id="" class="form-control col-half width-50" value="@Model.RePassword">
+                            @Html.ValidationMessageFor(model => model.RePassword)
                         </div>
                         <div class="role">
                             <p>Role: </p>
                             <div class="chooserole">
+                                @{  string check1 = string.Empty;
+                                    string check2 = string.Empty;
+                                    string check3 = string.Empty;
+                                    string check4 = string.Empty;
+                                    switch (@Model.Role)
+                                    {
+                                        case 1:
+                                            check1 = "checked";
+                                            break;
+                                        case 2:
+                                            check2 = "checked";
+                                            break;
+                                        case 3:
+                                            check3 = "checked";
+                                            break;
+                                        case 4:
+                                            check4 = "checked";
+                                            break;
+                                    }
+                                }
+
                                 <div class="form-check">
                                     <label class="form-check-label" style="font-weight: 100;">
-                                        <input type="radio" class="form-check-input" name="role" id="" value="1">
-                                        Admin
-                                    </label>
-                                    <label class="form-check-label" style="font-weight: 100;">
-                                        <input type="radio" class="form-check-input" name="role" id="" value="2">
+                                        <input type="radio" class="form-check-input" required id ="" name="Role" id="" value="2" @check2>
                                         Manager
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <label class="form-check-label" style="font-weight: 100;">
-                                        <input type="radio" class="form-check-input" name="role" id="" value="3">
+                                        <input type="radio" class="form-check-input" required id ="" name="Role" id="" value="3" @check3>
                                         Cheif
                                     </label>
                                     <label class="form-check-label" style="font-weight: 100;">
-                                        <input type="radio" class="form-check-input" name="role" id="" value="4">
+                                        <input type="radio" class="form-check-input" required id ="" name="Role" id="" value="4" @check4>
                                         Staff
                                     </label>
                                 </div>

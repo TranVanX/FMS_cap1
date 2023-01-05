@@ -22,6 +22,6 @@ namespace FMS.Models
 
         [Required(ErrorMessage = "Shift End Time")]
         [MaxLength(20, ErrorMessage = "Out of 20 characters")]
-        public string ShiftEndTime { get; set; }
+        public DateTime ShiftEndTime { get; set; }
     }
 }

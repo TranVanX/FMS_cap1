@@ -168,7 +168,7 @@
                         </div>
                         <div class="rowtext">
                             <p>Re-Password: </p>
-                            @Html.TextBoxFor(m => m.RePassword, "", new { @class = " ", placeholder = "RePassWord", Type = "password" })
+                            @Html.TextBoxFor(m => m.RePassword, "", new { @class = " ",  placeholder = "RePassWord", Type = "password" })
                             <label class="control-label text-danger">
                                 @ViewBag.err
                                 @Html.ValidationMessageFor(model => model.RePassword)
@@ -180,21 +180,17 @@
                             <div class="chooserole">
                                 <div class="form-check">
                                     <label class="form-check-label" style="font-weight: 100;">
-                                        <input type="radio" class="form-check-input" name="role" id="" value="1">
-                                        Admin
-                                    </label>
-                                    <label class="form-check-label" style="font-weight: 100;">
-                                        <input type="radio" class="form-check-input" name="role" id="" value="2">
+                                        <input type="radio" required id="" class="form-check-input" name="role" id="" value="2">
                                         Manager
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <label class="form-check-label" style="font-weight: 100;">
-                                        <input type="radio" class="form-check-input" name="role" id="" value="3">
+                                        <input type="radio" required id="" class="form-check-input" name="role" id="" value="3">
                                         Cheif
                                     </label>
                                     <label class="form-check-label" style="font-weight: 100;">
-                                        <input type="radio" class="form-check-input" name="role" id="" value="4">
+                                        <input type="radio" required id="" class="form-check-input" name="role" id="" value="4">
                                         Staff
                                     </label>
                                 </div>

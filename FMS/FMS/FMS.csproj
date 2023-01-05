@@ -194,6 +194,9 @@
       <DependentUpon>db_FMS.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SupplierValidate.cs" />
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>db_FMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserValidate.cs" />
     <Compile Include="Models\WorkShiftValidate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -228,7 +231,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\image\logof.jpg" />
+    <Content Include="Content\image\logo2.png" />
     <Content Include="Content\logincss\login.css" />
     <Content Include="Content\logincss\reset.css" />
     <Content Include="favicon.ico" />
@@ -319,6 +322,9 @@
     <Content Include="Models\db_FMS.edmx.diagram">
       <DependentUpon>db_FMS.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\StaffS\Views\StaffS\DeleteOrd.cshtml" />
+    <Content Include="Areas\Admin\Views\Staff\DeleteOrd.cshtml" />
+    <Content Include="Areas\Admin\Views\Chef\Updatefood.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

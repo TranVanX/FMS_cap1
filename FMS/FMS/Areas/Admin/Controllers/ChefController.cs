@@ -9,8 +9,6 @@ using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-
-
 namespace FMS.Areas.Admin.Controllers
 {
     public class ChefController : Controller
@@ -37,11 +35,9 @@ namespace FMS.Areas.Admin.Controllers
                 adfd.C_Food_id = fv.FoodID;
                 adfd.C_Food_name = fv.FoodName;
                 adfd.C_Description = fv.FoodDescrip;
-
                 db.MENU.Add(adfd);
                 db.SaveChanges();
                 return Redirect("~/admin/Chef/ManageMenu");
-                
             }
             else
             {
@@ -49,7 +45,6 @@ namespace FMS.Areas.Admin.Controllers
                 return View(fv);
             }
         }
-
         public ActionResult Deletefood(String id)
         {
             var fd = db.MENU.Where(n => n.C_Food_id == id).FirstOrDefault();
@@ -61,7 +56,6 @@ namespace FMS.Areas.Admin.Controllers
             }
             return Redirect("~/admin/Chef/ManageMenu");
         }
-
         //Manage supplier
         public ActionResult ManageSupp()
         {
@@ -93,7 +87,33 @@ namespace FMS.Areas.Admin.Controllers
                 return View(sp);
             }
         }
-
+        public ActionResult Updatefood(String id)
+        {
+            var checksp = db.MENU.Where(n => n.C_Food_id == id).FirstOrDefault();
+            FoodValidate sp = new FoodValidate();
+            sp.FoodID = checksp.C_Food_id;
+            sp.FoodName = checksp.C_Food_name;
+            sp.FoodDescrip = checksp.C_Description;
+            return View(sp);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Updatefood(FoodValidate sp)
+        {
+            var checksp = db.MENU.Where(x => x.C_Food_id == sp.FoodID).FirstOrDefault();
+            if (checksp != null)
+            {
+                checksp.C_Food_name = sp.FoodName;
+                checksp.C_Description = sp.FoodDescrip;
+                db.SaveChanges();
+                return Redirect("~/admin/Chef/ManageMenu");
+            }
+            else
+            {
+                ViewBag.err = "Food do not exist";
+                return View(sp);
+            }
+        }
         public ActionResult Updatesupplier(String id)
         {
             var checksp = db.SUPPLIER.Where(n => n.C_Supplier_id == id).FirstOrDefault();
@@ -109,7 +129,7 @@ namespace FMS.Areas.Admin.Controllers
         public ActionResult Updatesupplier(SupplierValidate sp)
         {
             var checksp = db.SUPPLIER.Where(x => x.C_Supplier_id == sp.SupplierID).FirstOrDefault();
-            if(checksp != null)
+            if (checksp != null)
             {
                 checksp.C_Supplier_id = sp.SupplierID;
                 checksp.C_Supplier_name = sp.SupplierName;
@@ -124,7 +144,6 @@ namespace FMS.Areas.Admin.Controllers
                 return View(sp);
             }
         }
-        
         public ActionResult DeleteSupp(String id)
         {
             var fd = db.SUPPLIER.Where(n => n.C_Supplier_id == id).FirstOrDefault();
@@ -136,13 +155,11 @@ namespace FMS.Areas.Admin.Controllers
             }
             return Redirect("~/admin/Chef/ManageSupp");
         }
-        
         //Manage Material
         public ActionResult ManageMaterial()
         {
             return View(db.INGREDIENT.ToList());
         }
-
         public ActionResult Addmaterial()
         {
             return View(new MaterialValidate());
@@ -169,7 +186,6 @@ namespace FMS.Areas.Admin.Controllers
                 return View(mr);
             }
         }
-
         public ActionResult Updatematerial(String id)
         {
             var checkmt = db.INGREDIENT.Where(n => n.C_Material_id == id).FirstOrDefault();
@@ -211,7 +227,6 @@ namespace FMS.Areas.Admin.Controllers
             }
             return Redirect("~/Admin/Chef/ManageMaterial");
         }
-
         //View Registration
         public ActionResult ViewRegis()
         {

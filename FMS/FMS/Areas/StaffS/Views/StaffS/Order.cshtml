@@ -3,6 +3,8 @@
     Layout = "~/Views/Shared/_logoutlayout.cshtml";
     ViewBag.Title = "Order";
 }
+@using FMS.Models
+@model List<MENU>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,8 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order</title>
     <link rel="stylesheet" href="~/Content/admincss/menuadim/homepageadmin.css">
-    <link rel="stylesheet" href="~/Content/admincss/menuadim/manageall.css">
-    <link rel="stylesheet" href="~/Content/admin/4.staff/order.css">
+    <link rel="stylesheet" href="~/Content/admin/3.chef/1.managemenu/1.managemenu.css">
+    <link rel="stylesheet" href="~/Content/admin/3.chef/2.managesupplier/2.managespplier.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 </head>
@@ -55,6 +57,42 @@
                 </div>
                 <div class="table-monan">
                     <table border="1">
+                        <thead>
+                            <tr class="success">
+                                <td>Image</td>
+                                <td>Food ID</td>
+                                <td>Food Name</td>
+                                <td>Description</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <th><img src="~/Content/image/@item.C_Imagefood" alt="" width="10%"></th>
+                                    <th>@item.C_Food_id</th>
+                                    <th>@item.C_Food_name</th>
+                                    <th>@item.C_Description</th>
+                                    <th>
+                                        <button type="submit" class="btn-delete" style="border: none;">
+                                            <a href="@Url.Action("Orderfood","StaffS",new { @id = @item.C_Food_id })"><div class=" btn btn-success">Order</div></a>
+                                        </button>
+                                    </th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="table-food">
+            <div class="khungtable">
+                <div class="content">
+                    <p>Order</p>
+                </div>
+                <div class="table-monan">
+                    <table border="1">
                         <tr>
                             <td class="td-img"></td>
                             <td class="width-36">Food Name</td>
@@ -63,16 +101,42 @@
                         </tr>
 
                         <tr>
-                            <td>
-                                <img src="https://comtamtuonghan.vn/wp-content/uploads/2020/09/com-tam-dac-biet-6-mon.png" alt="">
-                            </td>
-                            <td>Cơm sườn trứng</td>
-                            <td>Cơm + sườn + bì + trứng</td>
-                            <td>
-                                <a href="@Url.Action("Orderfood","StaffS")" class="btn btn-success">Order</a>
-                                <button type="button" class="btn btn-danger noneshow">Cancel</button>
-                            </td>
+                            @{
+                                db_FMSEntities db = new db_FMSEntities();
+                                var ord = db.ORDERS.ToList();
+
+                            }
+                            @foreach (var item in ord)
+                            {
+                                <tr>
+                                    @{ 
+                                        var menu = db.MENU.ToList();
+                                        var id = Session["C_Staff_id"] as String;
+                                    }
+
+                                    @{ 
+                                        foreach (var mitem in menu)
+                                        {
+                                            if(item.C_Food_id == mitem.C_Food_id && item.C_Staff_id == id)
+                                            {
+                                                <th><img src="~/Content/image/" alt="" width="10%"></th>
+                                                <th>@mitem.C_Food_name</th>
+                                                <th>@mitem.C_Description</th>
+                                                <th>
+                                                    <button type="submit" class="btn-delete" style="border: none;">
+                                                        <a href="@Url.Action("DeleteOrd","StaffS",new { @id = @item.C_Order_id })"><div class=" btn btn-success">Delete</div></a>
+                                                    </button>
+                                                </th>
+                                            }
+                                        }
+                                    }
+                                    
+
+                                    
+                                </tr>
+                            }
                         </tr>
+
                     </table>
                 </div>
             </div>

@@ -3,6 +3,11 @@
     Layout = "~/Views/Shared/_logoutlayout.cshtml";
     ViewBag.Title = "Order food";
 }
+@using FMS.Models
+@model FoodValidate
+@{
+    db_FMSEntities DB = new db_FMSEntities();
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -130,41 +135,59 @@
         </div>
     </div>
     <!-- end menu -->
-
     <!-- html cho phần nội dung -->
     <div class="home-main open3">
         <hr>
         <div class="table-food">
-            <div class="khungtable">
-                <div class="khungtren">
-                    <div class="order-right">
-                        <div class="rowtext">
-                            <p>Food Name: </p>
-                            <input type="text">
-                        </div>
-                        <div class="rowtext">
-                            <p>Description: </p>
-                            <input type="text">
-                        </div>
-                        <div class="rowtext">
-                            <p>Order for shift: </p>
-                            <select name="" id="">
-                                <option value="">Shift 1</option>
-                                <option value="">Shift 2</option>
-                                <option value="">Shift 3</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="order-image">
-                        <img src="~/Content/images/logof.jpg" alt="">
-                    </div>
-                </div>
-                <div class="btn-order">
-                    <button type="button" class="btn btn-success">Order</button>
-                    <button type="button" class="btn btn-danger">Cancel</button>
-                </div>
-            </div>
+            @using (Html.BeginForm("Orderfood", "Staff", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                <div class="khungtable">
+                    <div class="khungtren">
+                        <div class="order-right">
+                            <div class="rowtext">
+                                <p style="margin-left: 20px;">Food Name: </p>
+                                <input type="text" name="FoodID" placeholder="FoodID" value="@Model.FoodID" readonly>
+                                @Html.ValidationMessageFor(model => model.FoodID)
+                            </div>
+                            <div class="rowtext">
+                                <p style="margin-left: 20px;">Food Name: </p>
+                                <input type="text" name="FoodName" placeholder="FoodName" value="@Model.FoodName" readonly>
+                                @Html.ValidationMessageFor(model => model.FoodName)
+                            </div>
+                            <div class="rowtext">
+                                <p style="margin-left: 20px;">Description: </p>
+                                <input type="text" name="FoodDescrip" value="@Model.FoodDescrip" readonly>
+                            </div>
+                            <div class="rowtext">
+                                <p>Order for shift: </p>
+                                @*<input type="text" name="" placeholder="Name" required id="" class="form-control col-half">*@
+                                @{ var split = DB.SPLIT_TIME.ToList(); }
+                                <select name="Shiftid" class="form-control col-half ">
+                                    @foreach (var item in split)
+                                    {
+                                        <option value="@item.C_Shift_id" selected>@item.C_Shift_name</option>
+                                    }
+                                </select>
 
+                            </div>
+                            <div class="rowtext">
+                                <p style="margin-left: 44px;">Order id: </p>
+                                <input type="text" name="Orderid">
+                            </div>
+                            <div class="rowtext"><p style="margin-left: 44px; margin-top: -15px; padding-top: 0; font-size: 10px">@ViewBag.err</p></div>
+                        </div>
+
+
+                        <div class="order-image">
+                            <img src="~/Content/images/logof.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="btn-order">
+                        <button type="submit" class="btn btn-success">Order</button>
+                        <a href="@Url.Action("Order", "Staff")"><button type="button" class="btn btn-danger">Cancel</button></a>
+                    </div>
+                </div>
+            }
         </div>
     </div>
     <!-- end nội dung -->

@@ -70,8 +70,8 @@ namespace FMS.Areas.Admin.Controllers
             AccountValidate accvl = new AccountValidate();
             accvl.StaffId = acc.C_Staff_id;
             accvl.UserName = acc.C_Username;
-            accvl.Password = GetMD5(acc.C_Password);
-            accvl.RePassword = acc.C_Password;
+            accvl.Password = "";
+            accvl.RePassword = "";
 
             return View(accvl);
         }
@@ -101,9 +101,17 @@ namespace FMS.Areas.Admin.Controllers
             var ac = db.LOGIN.Where(n => n.C_Staff_id == id).FirstOrDefault();
             if (ac != null)
             {
-                db.LOGIN.Remove(ac);
-                db.SaveChanges();
-                return Redirect("~/Admin/Admin/ManageAcc");
+                if(ac.C_Role == 1)
+                {
+                    ViewBag.err = "You cannot delete the admin account";
+                    return View(ac);
+                }
+                else
+                {
+                    db.LOGIN.Remove(ac);
+                    db.SaveChanges();
+                    return Redirect("~/Admin/Admin/ManageAcc");
+                }
             }
             return Redirect("~/Admin/Admin/ManageAcc");
         }

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\capdemo4\FMS\FMS\Models\db_FMS.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Capstone1\capdemo\capdemo4(11.12.2022)\capdemo4\FMS\FMS\Models\db_FMS.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

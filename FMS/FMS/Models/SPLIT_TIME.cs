@@ -24,7 +24,7 @@ namespace FMS.Models
         public string C_Shift_id { get; set; }
         public string C_Shift_name { get; set; }
         public string C_Time_in { get; set; }
-        public string C_Time_out { get; set; }
+        public System.DateTime C_Time_out { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDERS> ORDERS { get; set; }

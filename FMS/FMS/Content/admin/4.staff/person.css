@@ -61,6 +61,7 @@ label {
 
     .img-person img {
         width: 90%;
+        height: 64%;
         border-radius: 50%;
         margin-bottom: 132px;
     }
@@ -69,3 +70,36 @@ label {
     margin-top: 30px;
     width: 100%;
 }
+
+.form-horizontal {
+    width: 50%;
+}
+
+.width-10 {
+    width: 10% !important;
+}
+
+.personal-left {
+    width: 100%;
+    display: block;
+}
+
+.left-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.control-lable {
+    width: 35%;
+}
+
+.control-input {
+    width: 70%;
+}
+
+    .control-input input {
+        width: 100%;
+    }

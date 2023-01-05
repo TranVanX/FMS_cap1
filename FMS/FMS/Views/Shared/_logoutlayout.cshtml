@@ -1,6 +1,11 @@
 ﻿@{
     Layout = null;
 }
+@using FMS.Models
+
+@{
+    db_FMSEntities DB = new db_FMSEntities();
+}
 
 <!DOCTYPE html>
 
@@ -16,7 +21,7 @@
             <div class="navigation-profile">
                 <div class="userBx">
                     <div class="imgBx">
-                        <img src="images/hướng dương.jpg" alt="ảnh đại diện">
+                        <img src="~/Content/" alt="ảnh đại diện">
                     </div>
                     <p class="username">name</p>
                 </div>

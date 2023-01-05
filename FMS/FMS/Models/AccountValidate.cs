@@ -14,7 +14,7 @@ namespace FMS.Models
 
         [DataType(DataType.Password)]
         [Required(ErrorMessage = "Enter Password")]
-        [MaxLength(50, ErrorMessage = "Out of 50 characters")]
+        [MaxLength(50, ErrorMessage = "Out of 20 characters")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]

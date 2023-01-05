@@ -36,7 +36,7 @@
       <PropertyRef Name="C_Username" />
     </Key>
     <Property Name="C_Username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="C_Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="C_Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="C_Staff_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="C_Role" Type="Int32" Nullable="false" />
     <NavigationProperty Name="STAFF" Relationship="Self.FK_Staff_id" FromRole="LOGIN" ToRole="STAFF" />
@@ -55,14 +55,14 @@
     <Key>
       <PropertyRef Name="C_Order_id" />
     </Key>
-    <Property Name="C_Order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="C_Order_id" Type="Int32" Nullable="false" />
     <Property Name="C_Food_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="C_Staff_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="C_Shift_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="C_Shift_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="C_Order_date" Type="DateTime" Precision="0" />
     <NavigationProperty Name="MENU" Relationship="Self.FK_Food_id" FromRole="ORDERS" ToRole="MENU" />
-    <NavigationProperty Name="SPLIT_TIME" Relationship="Self.FK_OR_shift_id" FromRole="ORDERS" ToRole="SPLIT_TIME" />
-    <NavigationProperty Name="STAFF" Relationship="Self.FK_OR_staff_id" FromRole="ORDERS" ToRole="STAFF" />
+    <NavigationProperty Name="SPLIT_TIME" Relationship="Self.C_Shiftid" FromRole="ORDERS" ToRole="SPLIT_TIME" />
+    <NavigationProperty Name="STAFF" Relationship="Self.C_Staff_id" FromRole="ORDERS" ToRole="STAFF" />
   </EntityType>
   <EntityType Name="SPLIT_TIME">
     <Key>
@@ -70,9 +70,9 @@
     </Key>
     <Property Name="C_Shift_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="C_Shift_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="C_Time_in" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="C_Time_out" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="ORDERS" Relationship="Self.FK_OR_shift_id" FromRole="SPLIT_TIME" ToRole="ORDERS" />
+    <Property Name="C_Time_in" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="C_Time_out" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="ORDERS" Relationship="Self.C_Shiftid" FromRole="SPLIT_TIME" ToRole="ORDERS" />
     <NavigationProperty Name="SPLIT_SHIFTS" Relationship="Self.FK_Shift_id" FromRole="SPLIT_TIME" ToRole="SPLIT_SHIFTS" />
   </EntityType>
   <EntityType Name="STAFF">
@@ -91,10 +91,12 @@
     <Property Name="C_City" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="C_Department_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="C_Face_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="C_Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="C_Ethnic" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DEPARTMENT" Relationship="Self.FK_Department_id" FromRole="STAFF" ToRole="DEPARTMENT" />
     <NavigationProperty Name="FACE" Relationship="Self.FK_Face_id" FromRole="STAFF" ToRole="FACE" />
     <NavigationProperty Name="LOGIN" Relationship="Self.FK_Staff_id" FromRole="STAFF" ToRole="LOGIN" />
-    <NavigationProperty Name="ORDERS" Relationship="Self.FK_OR_staff_id" FromRole="STAFF" ToRole="ORDERS" />
+    <NavigationProperty Name="ORDERS" Relationship="Self.C_Staff_id" FromRole="STAFF" ToRole="ORDERS" />
     <NavigationProperty Name="SPLIT_SHIFTS" Relationship="Self.FK_Staff_id_SS" FromRole="STAFF" ToRole="SPLIT_SHIFTS" />
   </EntityType>
   <EntityType Name="SUPPLIER">
@@ -110,6 +112,16 @@
     <Property Name="C_Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="INGREDIENT" Relationship="Self.FK_Material_id" FromRole="SUPPLIER" ToRole="INGREDIENT" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
   <EntityType Name="SPLIT_SHIFTS">
     <Key>
       <PropertyRef Name="C_Shift_id" />
@@ -117,7 +129,7 @@
     </Key>
     <Property Name="C_Shift_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="C_Staff_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="C_day" Type="DateTime" Precision="0" />
+    <Property Name="C_month" Type="Int32" />
     <NavigationProperty Name="SPLIT_TIME" Relationship="Self.FK_Shift_id" FromRole="SPLIT_SHIFTS" ToRole="SPLIT_TIME" />
     <NavigationProperty Name="STAFF" Relationship="Self.FK_Staff_id_SS" FromRole="SPLIT_SHIFTS" ToRole="STAFF" />
   </EntityType>
@@ -181,8 +193,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_OR_shift_id">
-    <End Role="SPLIT_TIME" Type="Self.SPLIT_TIME" Multiplicity="0..1" />
+  <Association Name="C_Shiftid">
+    <End Role="SPLIT_TIME" Type="Self.SPLIT_TIME" Multiplicity="1" />
     <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="SPLIT_TIME">
@@ -193,7 +205,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_OR_staff_id">
+  <Association Name="C_Staff_id">
     <End Role="STAFF" Type="Self.STAFF" Multiplicity="1" />
     <End Role="ORDERS" Type="Self.ORDERS" Multiplicity="*" />
     <ReferentialConstraint>
@@ -239,6 +251,7 @@
     <EntitySet Name="SPLIT_TIME" EntityType="Self.SPLIT_TIME" />
     <EntitySet Name="STAFF" EntityType="Self.STAFF" />
     <EntitySet Name="SUPPLIER" EntityType="Self.SUPPLIER" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="SPLIT_SHIFTS" EntityType="Self.SPLIT_SHIFTS" />
     <AssociationSet Name="FK_Department_id" Association="Self.FK_Department_id">
       <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
@@ -260,11 +273,11 @@
       <End Role="MENU" EntitySet="MENU" />
       <End Role="ORDERS" EntitySet="ORDERS" />
     </AssociationSet>
-    <AssociationSet Name="FK_OR_shift_id" Association="Self.FK_OR_shift_id">
+    <AssociationSet Name="C_Shiftid" Association="Self.C_Shiftid">
       <End Role="SPLIT_TIME" EntitySet="SPLIT_TIME" />
       <End Role="ORDERS" EntitySet="ORDERS" />
     </AssociationSet>
-    <AssociationSet Name="FK_OR_staff_id" Association="Self.FK_OR_staff_id">
+    <AssociationSet Name="C_Staff_id" Association="Self.C_Staff_id">
       <End Role="STAFF" EntitySet="STAFF" />
       <End Role="ORDERS" EntitySet="ORDERS" />
     </AssociationSet>

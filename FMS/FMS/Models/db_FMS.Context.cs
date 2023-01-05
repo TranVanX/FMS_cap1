@@ -34,6 +34,7 @@ namespace FMS.Models
         public virtual DbSet<SPLIT_TIME> SPLIT_TIME { get; set; }
         public virtual DbSet<STAFF> STAFF { get; set; }
         public virtual DbSet<SUPPLIER> SUPPLIER { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<SPLIT_SHIFTS> SPLIT_SHIFTS { get; set; }
     }
 }

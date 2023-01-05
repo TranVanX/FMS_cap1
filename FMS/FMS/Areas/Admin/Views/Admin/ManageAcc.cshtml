@@ -164,32 +164,62 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>
-                                <th>@item.C_Username</th>
-                                <th>@item.C_Password</th>
-                                <th>
-                                    @if (@item.C_Role == 1)
-                                    {
-                                        <p>Admin</p>
-                                    }
-                                    @if (@item.C_Role == 2)
-                                    {
-                                        <p>Manager</p>
-                                    }
-                                    @if (@item.C_Role == 3)
-                                    {
-                                        <p>Chef</p>
-                                    }
-                                    @if (@item.C_Role == 4)
-                                    {
-                                        <p>Staff</p>
-                                    }
-                                </th>
-                                <th>
-                                    <a href="@Url.Action("UpdateAcc","Admin",new { @id = @item.C_Staff_id })"><div class=" btn btn-warning">Update</div></a>
-                                    <a href="@Url.Action("DeleteAcc","Admin", new { @id = @item.C_Staff_id })"><div class=" btn btn-danger">Delete</div></a>
-                                </th>
-                            </tr>
+                            if (item.C_Role == 1)
+                            {
+                                <tr>
+                                    <th>@item.C_Username</th>
+                                    <th>@item.C_Password</th>
+                                    <th>
+                                        @if (@item.C_Role == 1)
+                                        {
+                                            <p>Admin</p>
+                                        }
+                                        @if (@item.C_Role == 2)
+                                        {
+                                            <p>Manager</p>
+                                        }
+                                        @if (@item.C_Role == 3)
+                                        {
+                                            <p>Chef</p>
+                                        }
+                                        @if (@item.C_Role == 4)
+                                        {
+                                            <p>Staff</p>
+                                        }
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr>
+                                    <th>@item.C_Username</th>
+                                    <th>@item.C_Password</th>
+                                    <th>
+                                        @if (@item.C_Role == 1)
+                                        {
+                                            <p>Admin</p>
+                                        }
+                                        @if (@item.C_Role == 2)
+                                        {
+                                            <p>Manager</p>
+                                        }
+                                        @if (@item.C_Role == 3)
+                                        {
+                                            <p>Chef</p>
+                                        }
+                                        @if (@item.C_Role == 4)
+                                        {
+                                            <p>Staff</p>
+                                        }
+                                    </th>
+                                    <th>
+                                        <a href="@Url.Action("UpdateAcc","Admin",new { @id = @item.C_Staff_id })"><div class=" btn btn-warning">Update</div></a>
+                                        <a href="@Url.Action("DeleteAcc","Admin", new { @id = @item.C_Staff_id })"><div class=" btn btn-danger">Delete</div></a>
+                                    </th>
+                                </tr>
+                            }
+
                         }
                     </tbody>
                 </table>

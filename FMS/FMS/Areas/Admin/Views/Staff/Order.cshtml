@@ -156,12 +156,14 @@
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                    <th></th>
+                                    <th><img src="~/Content/image/@item.C_Imagefood" alt="" width="10%"></th>
                                     <th>@item.C_Food_id</th>
                                     <th>@item.C_Food_name</th>
                                     <th>@item.C_Description</th>
                                     <th>
-                                        <button type="submit" class="btn-delete" style="border: none;"><div class=" btn btn-success">Order</div></button>
+                                        <button type="submit" class="btn-delete" style="border: none;">
+                                            <a href="@Url.Action("Orderfood","Staff",new { @id = @item.C_Food_id })"><div class=" btn btn-success">Order</div></a>
+                                        </button>
                                     </th>
                                 </tr>
                             }
@@ -185,15 +187,42 @@
                         </tr>
 
                         <tr>
-                            <td>
-                                <img src="https://comtamtuonghan.vn/wp-content/uploads/2020/09/com-tam-dac-biet-6-mon.png" alt="" width="10%">
-                            </td>
-                            <td>Cơm sườn trứng</td>
-                            <td>Cơm + sườn + bì + trứng</td>
-                            <td>
-                                <button type="button" class="btn btn-danger">Delete</button>
-                            </td>
+                            @{
+                                db_FMSEntities db = new db_FMSEntities();
+                                var ord = db.ORDERS.ToList();
+
+                            }
+                            @foreach (var item in ord)
+                            {
+                                <tr>
+                                    @{ 
+                                        var menu = db.MENU.ToList();
+                                        var id = Session["C_Staff_id"] as String;
+                                    }
+
+                                    @{ 
+                                        foreach (var mitem in menu)
+                                        {
+                                            if(item.C_Food_id == mitem.C_Food_id && item.C_Staff_id == id)
+                                            {
+                                                <th><img src="~/Content/image/" alt="" width="10%"></th>
+                                                <th>@mitem.C_Food_name</th>
+                                                <th>@mitem.C_Description</th>
+                                                <th>
+                                                    <button type="submit" class="btn-delete" style="border: none;">
+                                                        <a href="@Url.Action("DeleteOrd","Staff",new { @id = @item.C_Order_id })"><div class=" btn btn-success">Delete</div></a>
+                                                    </button>
+                                                </th>
+                                            }
+                                        }
+                                    }
+                                    
+
+                                    
+                                </tr>
+                            }
                         </tr>
+
                     </table>
                 </div>
             </div>

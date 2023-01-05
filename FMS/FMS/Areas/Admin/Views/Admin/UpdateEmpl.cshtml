@@ -163,8 +163,13 @@
                             </div>
                         </div>
                         <div class="rowtext">
-                            <p>Birth Day</p>
-                            @Html.TextBoxFor(m => m.Birthday, "", new { @class = " ", placeholder = "Day of birth" })
+                            <p style="margin-right: 57px;">Birth Day</p>
+                            <input value="@String.Format("{0:dd/MM/yyyy}", @Model.Birthday)"
+                                   type="text" name="Birthday"
+                                   placeholder="DD-MM-YYYY"
+                                   title="Nhập đúng định dạng DD/MM/YYYY" />
+                            @Html.ValidationMessageFor(model => model.Birthday)
+                            @*@Html.TextBoxFor(m => m.Birthday, "", new { @class = " ", placeholder = "Day of birth" })*@
                             @*<input type="text">*@
                         </div>
                         <div class="rowtext">
@@ -234,6 +239,8 @@
                 </div>
             </div>
         }
+
+        
     </div>
     <!-- end phần manage Account -->
 

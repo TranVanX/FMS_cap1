@@ -185,7 +185,7 @@
                                     <th>@item.C_Description</th>
                                     <th>
                                         @*<a href="@Url.Action("Deletefood","Chef", new { @id = @item.C_Food_id })" )><div class=" btn btn-danger">Delete</div></a>*@
-                                        <a href="@Url.Action("Updatefood","Chef")"><div class=" btn btn-warning">Update</div></a>
+                                        <a href="@Url.Action("Updatefood","Chef", new { @id = @item.C_Food_id })")><div class=" btn btn-warning">Update</div></a>
                                         <a href="@Url.Action("Deletefood","Chef", new { @id = @item.C_Food_id })" )><div class=" btn btn-danger">Delete</div></a>
                                     </th>
                                 </tr>

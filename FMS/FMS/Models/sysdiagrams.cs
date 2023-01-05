@@ -12,13 +12,12 @@ namespace FMS.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SPLIT_SHIFTS
+    public partial class sysdiagrams
     {
-        public string C_Shift_id { get; set; }
-        public string C_Staff_id { get; set; }
-        public Nullable<int> C_month { get; set; }
-    
-        public virtual SPLIT_TIME SPLIT_TIME { get; set; }
-        public virtual STAFF STAFF { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

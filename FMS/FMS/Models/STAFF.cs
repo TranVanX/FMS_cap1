@@ -34,6 +34,8 @@ namespace FMS.Models
         public string C_City { get; set; }
         public string C_Department_id { get; set; }
         public string C_Face_id { get; set; }
+        public string C_Image { get; set; }
+        public string C_Ethnic { get; set; }
     
         public virtual DEPARTMENT DEPARTMENT { get; set; }
         public virtual FACE FACE { get; set; }

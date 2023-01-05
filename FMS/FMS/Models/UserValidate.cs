@@ -30,6 +30,10 @@ namespace FMS.Models
 
         public string PhoneNumber { get; set; }
 
+        public string Image { get; set; }
+
+        public string Ethnic { get; set; }
+
         public string Ward { get; set; }
 
         public string District { get; set; }

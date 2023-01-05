@@ -8,6 +8,8 @@ namespace FMS.Models
 {
     public class FoodValidate
     {
+        public int Orderid { get; set; }
+
         [Required(ErrorMessage = "Food ID")]
         [MaxLength(10, ErrorMessage = "Out of 10 characters")]
         public string FoodID { get; set; }
@@ -19,5 +21,9 @@ namespace FMS.Models
         [Required(ErrorMessage = "Department Phone")]
         [MaxLength(100, ErrorMessage = "Out of 100 characters")]
         public string FoodDescrip { get; set; }
+
+        [Required(ErrorMessage = "Department Phone")]
+        [MaxLength(100, ErrorMessage = "Out of 100 characters")]
+        public string Shiftid { get; set; }
     }
 }

@@ -7,7 +7,6 @@ using FMS.Models;
 using System.Text;
 using System.Security.Cryptography;
 
-
 namespace FMS.Controllers
 {
     public class LoginController : Controller
@@ -30,6 +29,7 @@ namespace FMS.Controllers
                 var checkmanage = objModel.LOGIN.Any(s => s.C_Username == login.C_Username && s.C_Password == password && s.C_Role == 2);
                 var checkchef = objModel.LOGIN.Any(s => s.C_Username == login.C_Username && s.C_Password == password && s.C_Role == 3);
                 var checkstaff = objModel.LOGIN.Any(s => s.C_Username == login.C_Username && s.C_Password == password && s.C_Role == 4);
+
                 Session["C_Staff_id"] = staffid.C_Staff_id;
                 if (checkadmin)
                 {
@@ -45,8 +45,9 @@ namespace FMS.Controllers
                 }
                 if (checkstaff)
                 {
-                    return Redirect("~/StaffS/StaffS/Order");
+                    return Redirect("~/StaffS/StaffS/PersonalPro");
                 }
+
             }
             else
             {
